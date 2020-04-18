@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+  <head>
+    <!--Importing all, getting ready------------------------------------------>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'first_app/css/navbar.css' %}">
+    <!--Font styles form google-->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!---Importing finish------------------------------------------------------->
+
+    <!---Coded Scripts Begin------------------------------------------------------->
+		<script>
+      //handling the click of navbar menu button
+			function navBut()
+			{
+        if($("#Menu").is(":hidden"))
+        {
+          $("#Menu").show("slide");
+          //$("#belowNav").css("filter","blur(5px)");
+        }
+        else {
+          $("#Menu").hide("slide");
+          //$("#belowNav").css("filter","none");
+        }
+			}
+      //handles clicking out , when menu is open
+      function menuClose()
+      {
+        $("#Menu").hide("slide");
+        //$("#belowNav").css("filter","none");
+      }
+      //handles the click on search button
+      function showSearch()
+			{
+        if($("#searchBar").css("display")=="none")
+				  $("#searchBar").css("display","block");
+        else
+          $("#searchBar").css("display","none");
+			}
+      //handles clicking out , when searchbar is open
+      function closeSearch()
+      {
+        $("#searchBar").css("display","none");
+      }
+		</script>
+    <!---Coded Scripts Ends------------------------------------------------------->
+
+  </head>
+  <body>
+<!--NavBar begins---------------------------------------------------------->
+<nav class="navbar navbar-dark row">
+  <div class="col-4">
+    <!--Menu button:- --->
+    <button onfocusout="menuClose()" class="btn" type="button" onclick = "navBut()" id="navButton">
+      <span><img src="{%static 'first_app/imgs/menu-icon.png'%}" width="25px"></span>
+    </button>
+    <!--navContent will display on large screens-->
+    <a class="navContent" href="../index">Home</a>
+    <a class="navContent" href="#">About Us</a>
+  </div>
+  <!--navname will display on large screen-->
+  <div class="col-4 text-center navname">
+    <h1><a class="logo" href="../index">Technical Go</a></h1>
+  </div>
+  <!--navlogo will display on small screen-->
+  <div class="col-4 text-center navlogo">
+    <h5><a class="logo" href="../index">logo</a></h5>
+  </div>
+  <div class="col-4 text-right">
+    <img src="{%static 'first_app/imgs/search-icon.png'%}" onclick=showSearch() width="25px" style="cursor:pointer;">
+  </div>
+  <!--searchBar will display when searchButton is clicked-->
+  <div class="container-fluid"  id="searchBar">
+  <div class="row">
+    <div class="col-10"><input id="sinput1" type="text" placeholder="Search #Iron Man" onfocusout=closeSearch()></input></div>
+    <div class="col-2"><input type="button" id="sinput2" value="Search It" class="btn btn-danger"></input></div>
+  </div>
+</div>
+</nav>
+<!--NavBar ends------------------------------------------------------------>
+<!--NavBar Menu begins----------------------------------------------------->
+<div id="Menu">
+      <h6 id="MenuCross">X</h6>
+      <h6 class="menuHead">Classes</h6>
+      <ul style="list-style-type:none;">
+        <li><a href="../classes/?cld=1-8" class="menuContent">1st-8th</a></li>
+        <li><a href="../classes/?cld=9" class="menuContent">9th</a></li>
+        <li><a href="../classes/?cld=10" class="menuContent">10th</a></li>
+        <li><a href="../classes/?cld=11" class="menuContent">11th</a></li>
+        <li><a href="../classes/?cld=12" class="menuContent">12th</a></li>
+      </ul>
+      <h6 class="menuHead">Professional Courses</h6>
+      <ul style="list-style-type:none;">
+        <li><a href="../classes/?cld=Engineering" class="menuContent">Engineering</a></li>
+        <li><a href="../classes/?cld=CA" class="menuContent">Charted Accountancy</a></li>
+        <li><a href="../classes/?cld=B.Sc" class="menuContent">B.Sc.</a></li>
+      </ul>
+      <a href="#"><h6 class="menuHead">About Us</h6></a>
+  </div>
+  </body>
+  </html>
+<!--NavBar Menu ends------------------------------------------------------->

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+  <head>
+    <!--Importing all, getting ready------------------------------------------>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'first_app/css/classes.css' %}">
+    <!--Font styles form google-->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <!--JQuery-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        /*$.urlParam = function(name)     //the function for getting urlParam
+        {
+          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          return results[1] || 0;
+        }*/
+        $("#navbar").load("../navbar");
+        //$("#classDrop").val(decodeURIComponent($.urlParam('cld')));
+        $("#classDrop").change(function(){
+          window.open('../books/?cld='+$("#classDrop").val(),'_self');
+        });
+        $("#subDrop").change(function(){
+          window.open('../books/?cld='+$("#classDrop").val()+'&sbd='+$("#subDrop").val(),'_self');
+        });
+      });
+    </script>
+    <!---Importing finish------------------------------------------------------->
+    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+  </head>
+  <body>
+    <div id = "navbar"></div>
+    <div class="container">
+        <div class="row">
+          <div class="head col-12">
+              Classes
+            </div>
+          <div class="col-12">
+              <div class="opt1 col-12">
+                <div class="d-flex row">
+                  <div class="order-3 order-lg-1 order-md-1 order-xl-1 col-lg-6 col-md-6 col-lg-6 col-12 align-items-end">
+                    <!--               for nav menu tabs                 -->
+                    <!--<ul class="nav nav-pills">
+                      <li class="nav-item active">
+                        <a class="nav-link nav-link-color" href="#nav-videos">Videos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link nav-link-color"  href="#nav-notes">Notes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link nav-link-color"  href="#nav-books">Books</a>
+                      </li>
+                    </ul>-->
+
+                    <ul class="nav nav-pills" id="nav-tab" role="tablist">
+                      <li class="nav-item nav-videos-tab">
+                        <a class="nav-link nav-videos-tab" data-toggle="tab" role="tab" aria-controls="nav-videos" href="#nav-videos" aria-selected="false">
+                        Videos</a>
+                      </li>
+                      <li class="nav-item nav-notes-tab">
+                        <a class="nav-link nav-notes-tab" data-toggle="tab" href="#nav-notes" role="tab" aria-controls="nav-notes" aria-selected="false">Notes</a>
+                      </li>
+                      <li class="nav-item nav-books-tab">
+                        <a class="nav-link active nav-books-tab" data-toggle="tab" href="#nav-books" role="tab" aria-controls="nav-books" aria-selected="true">Books</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="order-1 order-lg-2 order-md-3 order-xl-3 col-12 col-lg-3 col-md-3 col-xl-3 align-self-center">
+                    <select id="classDrop">
+                      <option disabled selected>Course/Class</option>
+                      {% if sel_class %}
+                        <option selected>{{sel_class}}</option>
+                      {% endif %}
+                      {% if class_list %}
+                        {% for class in class_list %}
+                          {% ifnotequal class sel_class %}
+                          <option>{{class}}</option>
+                          {% endifnotequal %}
+                        {% endfor %}
+                      {% endif %}
+                    </select>
+                  </div>
+                  <div class="order-2 order-lg-3 order-md-3 order-xl-3 col-lg-3 col-md-3 col-xl-3 col-12 align-self-center">
+                    <select id="subDrop">
+                      <option disabled selected>Subject</option>
+                      {% if sel_sub %}
+                        <option selected>{{sel_sub}}</option>
+                      {% endif %}
+                      {% if sub_list %}
+                        {% for sub in sub_list %}
+                          {% ifnotequal sub.subname sel_sub %}
+                          <option>{{sub.subname}}</option>
+                          {% endifnotequal %}
+                        {% endfor %}
+                      {% endif %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space">
+          </div>
+            <div class="tab-content" id="nav-tabContent">
+              <!-- Content when notes pane is selected-->
+              <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
+                <div class="row">
+                  {% if notes_list %}
+                    <script> var i = 0; </script>
+                    {% for note in notes_list %}
+                      <!-- one card -->
+                      <div class="col-6 col-lg-3 col-md-3 col-xl-3"  style="margin-bottom:2%;">
+                        <a href="{{note.url}}" target="_blank" style="text-decoration:none;color:black">
+                        <div class="card ncard">
+                          <div class="nwrap">
+                            <script>//For changing the pictures of cards of notes
+                              switch (i) {
+                                case 0:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/0.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 1:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/1.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 2:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/2.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 3:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/3.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 4:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/4.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 5:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/5.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 6:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/6.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                default:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/7.jpeg' %} alt='Card image cap'>";
+                                  break;
+                              }
+                              document.write(imgpath);
+                              i=(i+1)%8;
+                            </script>
+                            <div class="card-body">
+                              <p class="card-text">{{note.title}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+                      </div>
+                      <!-- one card finish-->
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <!-- Content when books pane is selected-->
+              <div class="tab-pane fade active show" id="nav-books" role="tabpanel" aria-labelledby="nav-books-tab">
+                <div class="row">
+                  {% if books_list %}
+                    <script> var i = 0; </script>
+                    {% for book in books_list %}
+                      <!-- one card -->
+                      <div class="col-6 col-lg-3 col-md-3 col-xl-3"  style="margin-bottom:2%;">
+                        <a href="{{book.url}}" target="_blank" style="text-decoration:none;color:black">
+                        <div class="card ncard">
+                          <div class="nwrap">
+                            <script>//For changing the pictures of cards of notes
+                              switch (i) {
+                                case 0:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/0.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 1:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/1.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 2:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/2.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 3:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/3.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 4:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/4.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 5:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/5.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                case 6:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/6.jpeg' %} alt='Card image cap'>";
+                                  break;
+                                default:
+                                  var imgpath = "<img class='card-img-top' src={%static 'first_app/imgs/notesPics/7.jpeg' %} alt='Card image cap'>";
+                                  break;
+                              }
+                              document.write(imgpath);
+                              i=(i+1)%8;
+                            </script>
+                            <div class="card-body">
+                              <strong> {{book.title}} <br>- {{book.author}} </strong>
+                              <p class="card-text">{{book.desc}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+                      </div>
+                      <!-- one card finish-->
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <!-- Content when videos pane is selected-->
+              <div class="tab-pane fade" id="nav-videos" role="tabpanel" aria-labelledby="nav-videos-tab">
+                <div class="row">
+                  {% if videos_list %}
+                    {% for video in videos_list %}
+                      <!-- one card -->
+                      <br>
+                      <a class="timg" href="../player?url={{video.url}}" target="_blank" style="text-decoration:none;color:black;width:100%;" onload=getthumbnail()>
+                        <div class="vwrap">
+                          <div class="col-12 video">
+                            <div class="card vcard">
+                              <div class="row">
+                                <div class="col-5 col-md-3 col-lg-3 col-xl-3">
+                                  <script>
+                                    var url = '{{video.url}}'.split('www.youtube.com/watch?v=')[1];
+                                    document.write('<img id="vidimg" class="img-fluid w-100 text-center vthumb img-responsive" src="http://i1.ytimg.com/vi/'+url+'/maxresdefault.jpg" alt="Card image cap">')
+                                  </script>
+                              </div>
+                                <div class="col-7 col-md-9 col-lg-9 col-xl-9 desc">
+                                  <div class="card-block">
+                                  <strong>{{video.title}}</strong>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- one card finish-->
+                    {% endfor %}
+                  {% endif %}
+                </div>
+            </div>
+      </div>
+    <!-- Popper.js, then Bootstrap JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

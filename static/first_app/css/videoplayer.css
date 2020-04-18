@@ -1,0 +1,97 @@
+body
+{
+  background: #f8f8f8;
+}
+
+.vplayer
+{
+  width: 100%;
+  height:75vh;
+}
+iframe
+{
+  height: inherit;
+  width: inherit
+}
+.suggv
+{
+  height: inherit;
+  width:100%;
+}
+.suggest
+{
+  border-radius: 40px;
+}
+
+.prv, .nxt
+{
+  height: 8vh;
+  margin: auto;
+  width: 6%;
+  background-color: grey;
+  border-radius: 5px;
+}
+.prv:hover, .nxt:hover
+{
+  background-color:grey;
+}
+.prv
+{
+  margin-left: -3%;
+}
+.nxt
+{
+  margin-right:-3%;
+}
+.sugg
+{
+  width: 90%;
+  margin-top: 1vh;
+}
+.relatedv
+{
+  font-style: italic;
+	font-weight: bold;
+	font-family: 'Mali', cursive;
+  height: 6vh;
+}
+.rvhead
+{
+  align-self: center;
+  margin-top:1vh;
+  color: #F44336;
+  font-style: italic;
+  font-weight: bold;
+  display: inline-block;
+}
+.card
+{
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  border: none;
+}
+.card-img-top
+{
+  border-radius: 8px;
+  border: 1px grey solid;
+}
+@media (max-width:575px)
+{
+  .sugg
+  {
+  display:none;
+  }
+  .vplayer
+  {
+    height: 30vh;
+  }
+}
+@media (min-width:576px)
+{
+  .mobsugg
+  {
+    display: none;
+  }
+
+}

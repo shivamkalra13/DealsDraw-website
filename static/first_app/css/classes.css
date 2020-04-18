@@ -1,0 +1,149 @@
+body /*backgraound colour*/
+{
+	background-color:#f8f8f8;
+}
+.container /* container width*/
+{
+	max-width: 92%;
+}
+/* div for class heading */
+.head /*heading (Class)*/
+{
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
+	padding-bottom: 2.5%;
+	padding-top: 1%;
+}
+
+
+/* navigation menu div starts */
+
+
+.opt1 /* navigation menu div */
+{
+	background-color:white;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	border-radius: 15px;
+	box-shadow:10px 10px rgb(160,161,161,0.05);
+}
+select /*dropdown*/
+{
+	width:100%;
+	text-align: center;
+	font-size:130%;
+	border-radius: 3px;
+	border: solid 1px;
+	background-color:#f8f8f8;
+	padding-top:3%;
+	padding-bottom: 3%;
+}
+
+.nav-item /* tabs */
+{
+	width: 33.33%;
+	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	background-color:#f8f8f8;
+	border-radius: 7px;
+}
+.nav-link /*tab links */
+{
+	color:black;
+	text-align: center;
+}
+
+.nav-pills > li > a
+{
+	border: 1px solid #2e3131;
+}
+
+.nav-pills > li > a.active {
+  background-color: #db0a40 !important;
+	border-radius: inherit;
+	border-color: #f61a4f;
+}
+
+.nav-item:hover,.nav-link:hover /*tab text color on hover */
+{
+	color: white;
+	background-color:#f61a4f;
+	border-color: #f61a4f;
+	font-weight: bold;
+}
+
+.nav-pills > li > a.nav-videos-tab
+{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.nav-pills > li > a.nav-notes-tab
+{
+	border-radius: 0;
+}
+
+.nav-pills > li > a.nav-books-tab
+{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+/*navigation menu ends */
+
+
+/*Video section Begins */
+
+
+.space /* top margin of video div */
+{
+	margin-top: 5%;
+}
+.vcard /*video card */
+{
+	background-color:#f8f8f8;
+	border:none;
+}
+.desc /* video description */
+{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.vthumb /* video image */
+{
+	border-radius: 7px;
+	height: 85%;
+	margin-top:5%;
+}
+.vwrap /*video wrapper div*/
+{
+	margin-bottom: 10px;
+	max-height: 150px;
+	overflow: hidden;
+}
+.vcard:hover
+{
+	background-color: white;
+	border: none;
+}
+.vwrap:hover/*hover animation */
+{
+	background-color: white;
+	border-radius: 6px;
+	border: none;
+	box-shadow:0px 0px 11px 11px rgb(160,161,161,0.2);
+}
+/* video section Ends */
+.nwrap:hover
+{
+	background-color: white;
+	border-radius: 6px;
+	border: none;
+	box-shadow:0px 0px 11px 11px rgb(160,161,161,0.2);
+}
+.ncard
+{
+	background-color: #f8f8f8;
+}
