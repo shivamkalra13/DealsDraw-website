@@ -28,7 +28,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://dealsdraw.herokuapp.com/','dealsdraw.herokuapp.com']
 
 
 # Application definition
