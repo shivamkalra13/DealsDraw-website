@@ -4,10 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from first_app.models import User, Referal, Order, Offer, Product, Store
 from first_app.serializers import UserSerializer, ReferalSerializer, OrderSerializer, OfferSerializer, ProductSerializer, StoreSerializer
-# from first_app.models import Subject
-# from first_app.models import Notes
-# from first_app.models import Videos
-# from first_app.models import Books
+from django.contrib.auth import hashers
 
 @csrf_exempt
 def user_list(request):
@@ -52,6 +49,26 @@ def user_detail(request, pk):
     elif request.method == 'DELETE':
         user.delete()
         return HttpResponse(status=204)
+
+@csrf_exempt
+def user_auth(request):
+    #Authenticate user using password using POST request\
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        userinfo = dict(data)
+        try:
+            user = User.objects.get(phone = userinfo['phone'])
+        except User.DoesNotExist:
+            return HttpResponse(status=404)
+        if(userinfo['password'] == user.password):
+            #hash = hashers.make_password(user.password)
+            #print(hashers.check_password(userinfo['password'],hash))
+            serializer = UserSerializer(user)
+            return JsonResponse(serializer.data,status=201)
+        else:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=400)
 
 @csrf_exempt
 def referal_list(request):
