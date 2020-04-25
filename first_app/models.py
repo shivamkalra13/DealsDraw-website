@@ -4,11 +4,13 @@ from django import forms
 
 # Create your models here.
 class User(models.Model):
+    GENDER_OPTIONS = [('Male','Male'),('Female','Female')] #tuples of (actual value, human readable name)
     phone = models.BigIntegerField(validators=[RegexValidator(regex='^[0-9]{10}$', message='Length has to be 10')], blank = False, primary_key = True)
     password = models.CharField(max_length=32, blank = False)
     name = models.CharField(max_length = 50, blank = False)
     email = models.EmailField(max_length = 200, blank = True)
     earning = models.PositiveIntegerField(default=0 ,blank = False)
+    gender = models.CharField(max_length=6,choices=GENDER_OPTIONS,blank=True)
 
     def __str__(self):
         return (str(self.phone))
