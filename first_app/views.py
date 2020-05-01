@@ -18,6 +18,7 @@ def user_list(request):
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
+        data['password'] = hashers.make_password(data['password'])
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -55,12 +56,11 @@ def user_auth(request):
     #Authenticate user using password using POST request\
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        userinfo = dict(data)
         try:
-            user = User.objects.get(phone = userinfo['phone'])
+            user = User.objects.get(phone = data['phone'])
         except User.DoesNotExist:
             return HttpResponse(status=404)
-        if(userinfo['password'] == user.password):
+        if(hashers.check_password(data['password'],user.password)):#userinfo['password'] == user.password):
             #hash = hashers.make_password(user.password)
             #print(hashers.check_password(userinfo['password'],hash))
             serializer = UserSerializer(user)
