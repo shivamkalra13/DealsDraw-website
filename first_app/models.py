@@ -29,7 +29,7 @@ class Referal(models.Model):
 class Store(models.Model):
     name = models.CharField(max_length = 10, blank = False, primary_key = True)
     total_orders = models.PositiveIntegerField(default=0, blank = False)
-    payment_threshold_period = models.PositiveIntegerField(blank = True)
+    payment_threshold_period = models.PositiveIntegerField(blank = True,null =True)
 
     def __str__(self):
         return (self.name)

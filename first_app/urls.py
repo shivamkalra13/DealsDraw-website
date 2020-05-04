@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', views.user_list),
     path('users/<int:pk>/', views.user_detail),
+    path('offers/',views.offer_list),
     path('userauth/',views.user_auth),
     path('index/', views.index, name='index'),   # URL of the index of website.
     path('',views.index,name='index'),
