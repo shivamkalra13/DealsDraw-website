@@ -243,16 +243,20 @@ a.logo:hover
 	}
 }
 
-.card{
+.card
+{
 	z-index: -2;
-	padding: 2%;
-	border-radius: 18px;
+	border-radius: 7px;
+}
+.card-img-top
+{
+	object-fit:scale-down;
+	height: 10vw;
 }
 .wrap
 {
 	padding: 0%;
-	margin:4%;
-	border-radius: 18px;
+	border-radius: 10px;
 }
 .wrap:hover
 {
@@ -260,9 +264,11 @@ a.logo:hover
 	cursor: pointer;
 }
 
-.card-text
+.card-title
 {
-	min-height: 8vh;
+	text-align: center;
+	font-size: 2vw;
+	color: #414141;
 }
 
 a.aForBut
@@ -270,6 +276,7 @@ a.aForBut
 	text-decoration: none;
 	color: black;
 }
+
 a.footerLink, a.footerLink:hover
 {
 	text-decoration: none;

@@ -62,7 +62,7 @@
 		</script>
     <!---Coded Scripts Ends------------------------------------------------------->
 
-    <title>TechnicalGo</title>
+    <title>Deals Draw</title>
   </head>
 
   <body>
@@ -79,11 +79,11 @@
       </div>
       <!--navname will display on large screen-->
       <div class="col-4 text-center navname">
-        <h1><a class="logo" href="../index">Technical Go</a></h1>
+        <h1><a class="logo" href="../index">Deals Draw</a></h1>
       </div>
       <!--navlogo will display on small screen-->
       <div class="col-4 text-center navlogo">
-        <h5><a class="logo" href="../index">logo</a></h5>
+        <h5><a class="logo" href="../index">DD</a></h5>
       </div>
       <div class="col-4 text-right">
         <img src="{%static 'first_app/imgs/search-icon.png'%}" onclick=showSearch() width="25px" style="cursor:pointer;">
@@ -122,50 +122,34 @@
     <!-- Home Page below NavBar:- --------------------------------------------->
     <div id="belowNav">
       <!--Cover Picture on Home/Index Page begins------------------------------>
-      <div id="homepic" class="Img">
+      <img src="{%static 'first_app/imgs/homepic14.jpg'%}" style="width:100%">
+      <!--<div id="homepic" class="Img">
         <h3>The Past cannot be changed<br>The future is yet in your<br>Power</h3>
-      </div>
+      </div>-->
       <!--Cover Picture on Home/Index Page ends------------------------------>
 
       <!--container for putting content begins---->
       <div id="belowContent"class="container-fluid">
         <br>
-        <h1 align="center"> Welcome to a platform that provides the pathway to excel in the academics</h1>
+        <h1> Top Offers...</h1>
         <br>
         <div class="row">
-          <div class="wrap col-md-3">
-           <a class="aForBut" href="../books">
-            <div class="card">
-              <img class="card-img-top" src="{%static 'first_app/imgs/book1.jpeg'%}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Books</h5>
-                <p class="card-text">Books are human beings' best friend.</p>
-              </div>
-            </div>
-           </a>
-          </div>
-          <div class="wrap col-md-3">
-           <a class="aForBut" href="../classes">
-            <div class="card">
-              <img class="card-img-top" src="{%static 'first_app/imgs/vid1.jpeg'%}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Videos</h5>
-                <p class="card-text">Enhance your learnings through videos.</p>
-              </div>
-            </div>
-           </a>
-          </div>
-          <div class="wrap col-md-3">
-           <a class="aForBut" href="../notes">
-            <div class="card">
-                <img class="card-img-top" src="{%static 'first_app/imgs/home4.jpg'%}" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Notes</h5>
-                  <p class="card-text">Make your exam preparation easier.</p>
+          {% if offers %}
+            {% for offer in offers %}
+               <div class="col-md-3 col-4" style="margin-bottom:2vh;">
+                <div class="wrap">
+                 <a class="aForBut" href="../books">
+                  <div class="card">
+                    <img class="card-img-top img-fluid" src="{%static 'first_app/imgs/offer.png'%}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{offer.title}}</h5>
+                    </div>
+                  </div>
+                 </a>
                 </div>
-            </div>
-           </a>
-          </div>
+               </div>
+             {% endfor %}
+           {% endif %}
         </div>
         <p>
           <br>

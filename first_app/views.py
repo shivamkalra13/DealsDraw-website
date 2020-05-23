@@ -333,8 +333,9 @@ def store_detail(request, pk):
 
 ##### Create your views here.
 def index(request):
+    offers = Offer.objects.all()
     mycontext={
-        'data': 'This is the first web page of the app.'
+        'offers': offers
     }
     return render(request, 'first_app/index.html', context=mycontext)
 
