@@ -282,3 +282,14 @@ a.footerLink, a.footerLink:hover
 	text-decoration: none;
 	color: white;
 }
+.category-card {
+	border:none; background:none;
+}
+
+.carousel-control-prev, .carousel-control-next
+{
+	width:2vw;
+	position:absolute;
+	right:0px;
+	font-size: 5vh;
+}
