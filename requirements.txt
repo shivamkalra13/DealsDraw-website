@@ -7,7 +7,7 @@ dj-database-url==0.5.0
 dj-static==0.0.6
 Django==2.2.12
 django-heroku==0.3.1
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 gunicorn==19.9.0
 httpie==2.0.0
 idna==2.9
